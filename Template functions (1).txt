@@ -1,0 +1,87 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+void vcn(string s)
+{
+	int v = 0, c = 0, n = 0;
+	int a;
+	bool temp = false;
+	
+
+	for (int i = 0; i < s.length(); i++)
+	{
+		a = int(s[i]);
+		temp = false;
+
+		if (a >= 48 && a <= 57)
+		{
+			n++;
+		}
+		/*else if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' ||
+			s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')*/
+		else if(a==97|| a == 101 || a == 105 || a ==111 || a == 117 || 
+			a == 65 || a == 69 || a == 73 || a == 79 || a == 85 )
+		{
+			v++;
+			temp = true;
+		}
+
+		else if (a >= 65 && a <= 90 || a >= 97 && a <= 122 && !temp)
+			c++;
+
+	}
+
+	cout << "\n String: " << s << endl;
+	cout << " Vowels: " << v << endl;
+	cout << " Consonants: " << c << endl;
+	cout << " Numbers: " << n << endl;
+}
+
+int main()
+{
+	string s;
+
+	cout << " Enter a string: ";
+	getline(cin, s);
+	vcn(s);
+
+	return 0;
+}
+
+--------------------------------------------------------------------------------
+
+#include<iostream>
+using namespace std;
+
+template<class t>
+t larg(t n1, t n2, t n3)
+{
+	if (n1 >= n2)
+	{
+		if (n1 >= n3)
+			return n1;
+		else
+			return n3;
+	}
+	else    //n2 is greater
+	{
+		if (n2 >= n3)
+			return n2;
+		else
+			return n3;
+	}
+}
+int main()
+{
+	char a, b, c;
+	cin >> a >> b >> c;
+
+	char n = larg<char>(a, b, c);
+
+	cout << " Largest: " << n << endl;
+
+	return 0;
+}

@@ -1,0 +1,117 @@
+sorting:
+
+#include <iostream>
+using namespace std;
+
+template<typename t>
+void sorting(t* arr, int s)
+{
+	t temp;
+
+	for (int i = 0; i < s; i++)
+	{
+		temp = arr[i];
+
+		for (int j = i + 1; j < s; j++)
+		{
+			if (temp > arr[j])
+			{
+				arr[i] = arr[j];
+				arr[j] = temp;
+				temp = arr[i];
+			}
+		}
+	}
+}
+int main()
+{
+	double arr[5], s = 5;
+
+	for (int i = 0; i < s; i++)
+		cin >> arr[i];
+
+	cout << "\n BEfore sorting: ";
+	for (int i = 0; i < s; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+
+	sorting<double>(arr, s);
+
+	cout << "\n After sorting: ";
+	for (int i = 0; i < s; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+
+	return 0;
+}
+
+-------------------------------------------------
+
+transpose:
+
+#include <iostream>
+using namespace std;
+
+template<class t>
+t** Transpose(t** arr, int  rows, int col)
+{
+	t** a = new t *[col];    //rows
+
+	for (int i = 0; i < col; i++)
+		a[i] = new t[rows];   //columns
+	cout << "\n After transpose: " << endl;
+
+	for (int i = 0; i < col; i++)
+	{
+		for (int j = 0; j < rows; j++)
+		{
+			a[i][j] = arr[j][i];
+		}
+	}
+
+	return a;
+}
+
+int main()
+{
+	int r = 3, c = 2;
+
+	int** arr;
+	arr = new int* [r];    //rows
+
+	for (int i = 0; i < r; i++)
+		arr[i] = new int[c];   //columns
+
+	for (int i = 0; i < r; i++)
+	{
+		cout << i + 1 << " rows:" << endl;
+		for (int j = 0; j < c; j++)
+		{
+			cout << j + 1 << " column: ";
+			cin >> arr[i][j];
+		}
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+			cout << arr[i][j] << " ";
+		cout << endl;
+	}
+
+	int** a;
+	a = Transpose<int>(arr, 3, 2);
+
+	for (int i = 0; i < c; i++)
+	{		
+		for (int j = 0; j < r; j++)
+			cout << a[i][j] << " ";
+		cout << endl;
+	}
+
+	for (int i = 0; i < 3; i++)
+		delete[] arr[i];
+
+	delete[] arr;
+
+	return 0;
+}
